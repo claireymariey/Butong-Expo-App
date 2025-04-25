@@ -11,7 +11,7 @@ import {
   Alert,
 } from "react-native";
 
-const API_URL = "https://full-stack-to-do-app-j6ds.onrender.com/api/todos/";
+const API_URL = "https://butong-expo-app.onrender.com/api/todos/";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -143,18 +143,14 @@ export default function App() {
                 <TextInput
                   value={editingText}
                   onChangeText={setEditingText}
-                  style={[
-                    styles.input,
-                    theme.input,
-                    { backgroundColor: "#ffffcc", flex: 1 }, // Highlight edit
-                  ]}
+                  style={[styles.input, theme.input]}
                   placeholderTextColor={darkMode ? "#ccc" : "#333"}
                 />
                 <Button title="💾" onPress={saveEdit} />
                 <Button title="❌" onPress={() => setEditingId(null)} />
               </View>
             ) : (
-              <View style={styles.taskRow}>
+              <>
                 <Text
                   style={
                     item.completed
@@ -172,7 +168,7 @@ export default function App() {
                     <Text style={[styles.actionText, theme.actionText]}>🗑️</Text>
                   </TouchableOpacity>
                 </View>
-              </View>
+              </>
             )}
           </View>
         )}
@@ -205,7 +201,8 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   taskItem: {
-    flexDirection: "column",
+    flexDirection: "row",
+    alignItems: "center",
     padding: 12,
     marginVertical: 6,
     borderRadius: 8,
@@ -217,13 +214,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 2,
     width: "100%",
-  },
-  taskRow: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    gap: 8,
-    marginTop: 8,
   },
   taskText: {
     flex: 1,
@@ -239,10 +229,10 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   editRow: {
+    flex: 1,
     flexDirection: "row",
     alignItems: "center",
     gap: 5,
-    marginTop: 10,
   },
   actions: {
     flexDirection: "row",
